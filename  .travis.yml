@@ -17,6 +17,6 @@ after_success:
 notifications:
   email:
     recipients:
-      -egorsarantsev4565@yandex.ru
+      -egorsarantsev4565@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
