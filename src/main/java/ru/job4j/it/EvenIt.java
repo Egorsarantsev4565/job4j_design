@@ -9,7 +9,7 @@ public class EvenIt implements Iterator<Integer> {
     private final int[] numbers;
     private int point = 0;
 
-    public EvenIt (int[] numbers) {
+    public EvenIt(int[] numbers) {
         this.numbers = numbers;
     }
 
