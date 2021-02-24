@@ -16,9 +16,15 @@ public class SimpleArray<T> implements Iterable<T> {
 
     }
 
+    private Object[] newArray() {
+        Object[] newArray = new Object[this.newArray().length * 2];
+        return newArray = Arrays.copyOf(container, container.length + 1);
+
+    }
+
     public void add(T model) {
         if (size == container.length) {
-            container = Arrays.copyOf(container, container.length + 1);
+            container = newArray();
         }
         container[size++] = model;
         modCount++;
