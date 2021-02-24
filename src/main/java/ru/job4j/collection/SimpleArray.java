@@ -4,10 +4,9 @@ import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T> {
 
-    Object[] container = new Object[10];
+    private Object[] container = new Object[10];
     private int modCount = 0;
     private int size = 0;
-
 
     public T get(int index) {
         int i = Objects.checkIndex(index, size);
@@ -18,7 +17,8 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private Object[] newArray() {
         Object[] newArray = new Object[this.newArray().length * 2];
-        return newArray = Arrays.copyOf(container, container.length + 1);
+        newArray = Arrays.copyOf(container, container.length + 1);
+        return newArray;
 
     }
 
