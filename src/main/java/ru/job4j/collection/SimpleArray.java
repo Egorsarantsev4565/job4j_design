@@ -10,15 +10,12 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public T get(int index) {
         int i = Objects.checkIndex(index, size);
-        modCount++;
         return (T) container[i];
 
     }
 
     private Object[] newArray() {
-      if (size == container.length) {
           container = Arrays.copyOf(container, container.length * 2);
-      }
         return container;
 
     }
@@ -42,6 +39,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
+
             return point < size;
         }
 
@@ -56,4 +54,5 @@ public class SimpleArray<T> implements Iterable<T> {
             return (T) container[point++];
         }
     }
+
 }
