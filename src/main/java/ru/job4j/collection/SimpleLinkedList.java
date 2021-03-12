@@ -31,6 +31,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return current.item;
     }
 
+
     @Override
     public Iterator<E> iterator() {
 

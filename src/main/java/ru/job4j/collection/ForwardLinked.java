@@ -15,13 +15,34 @@ if (head == null) {
        T t = head.value;
         head = head.next;
         size--;
-        return t;
+         return t;
+    }
+
+    public T deleteLast() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+        Node<T> tail = head;
+        T t = null;
+        for (int index = 0; index < size - 2; index++) {
+            tail = tail.next;
+        }
+        if (size > 1) {
+            t = tail.next.value;
+            tail.next = null;
+        } else {
+         t = tail.value;
+            head = null;
+        }
+        size--;
+        return  t;
     }
 
     public void add(T value) {
-        Node<T> node = new Node<T>(value, null);
+        Node<T> node = new Node(value, null);
         if (head == null) {
             head = node;
+            size++;
             return;
         }
         Node<T> tail = head;
@@ -29,15 +50,17 @@ if (head == null) {
             tail = tail.next;
         }
         tail.next = node;
+        size++;
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator() {
             Node<T> node = head;
 
             @Override
             public boolean hasNext() {
+
                 return node != null;
             }
 
