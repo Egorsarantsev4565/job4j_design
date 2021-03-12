@@ -53,6 +53,21 @@ if (head == null) {
         size++;
     }
 
+    public void revert() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+        Node<T> prev = null;
+        Node<T> follow = head.next;
+        while (follow != null) {
+            head.next = prev;
+            prev = head;
+            head = follow;
+            follow = follow.next;
+        }
+        head.next = prev;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator() {
