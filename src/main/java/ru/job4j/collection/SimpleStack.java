@@ -5,16 +5,13 @@ public class SimpleStack<T> {
 
 
 public T pop() {
-        return linked.deleteLast();
+        return linked.deleteFirst();
     }
 
     public void push(T value) {
-        linked.add(value);
+        linked.addFirst(value);
     }
     public boolean isEmpty() {
-        if (linked.iterator().hasNext()) {
-            return false;
-        }
-        return true;
+        return linked.isEmpty();
     }
 }
