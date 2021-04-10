@@ -55,10 +55,10 @@ if (head == null) {
     }
 
     public void addFirst(T value) {
-        Node<T> Node = head;
+        Node<T> node = head;
         head = new Node<>(value, null);
         head.value = value;
-        head.next = Node;
+        head.next = node;
 
     }
 
