@@ -2,25 +2,25 @@ package ru.job4j.generic;
 
 public class RoleStore implements Store<Role> {
 
-    private final Store<Role> role_store = new MemStore<>();
+    private final Store<Role>  camelCase = new MemStore<>();
 
     @Override
     public void add(Role model) {
-        role_store.add(model);
+        camelCase.add(model);
     }
 
     @Override
     public boolean replace(String id, Role model) {
-        return role_store.replace(id, model);
+        return  camelCase.replace(id, model);
     }
 
     @Override
     public boolean delete(String id) {
-        return role_store.delete(id);
+        return  camelCase.delete(id);
     }
 
     @Override
     public Role findById(String id) {
-        return role_store.findById(id);
+        return  camelCase.findById(id);
     }
 }
