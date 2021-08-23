@@ -31,7 +31,6 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return current.item;
     }
 
-
     @Override
     public Iterator<E> iterator() {
 
@@ -39,9 +38,9 @@ public class SimpleLinkedList<E> implements Iterable<E> {
     }
 
     private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
+        private E item;
+        private Node<E> next;
+        private Node<E> prev;
 
         Node(Node<E> prev, E element, Node<E> next) {
             this.item = element;
@@ -49,7 +48,6 @@ public class SimpleLinkedList<E> implements Iterable<E> {
             this.prev = prev;
         }
     }
-
 
     public class SimpleLinkedIterator implements Iterator<E> {
         private Node<E> point = first;

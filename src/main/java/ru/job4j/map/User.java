@@ -7,15 +7,15 @@ public class User {
     private int children;
     private Calendar birthday;
 
-    public User (String name) {
+    public User(String name) {
         this.name = name;
     }
 
-    public User (int children) {
+    public User(int children) {
         this.children = children;
     }
 
-    public User (Calendar birthday) {
+    public User(Calendar birthday) {
         this.birthday = birthday;
     }
 }
