@@ -1,8 +1,5 @@
 package ru.job4j.map;
 
-import jdk.swing.interop.SwingInterOpUtils;
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.*;
 
 public class User {
@@ -14,6 +11,12 @@ public class User {
         this.name = name;
         this.children = children;
         this.birthday = birthday;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
     }
 
     public static void main(String[] args) {
