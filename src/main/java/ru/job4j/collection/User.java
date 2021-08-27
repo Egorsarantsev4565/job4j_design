@@ -1,11 +1,11 @@
-package ru.job4j.map;
+package ru.job4j.collection;
 
 import java.util.*;
 
 public class User {
-    private String name;
-    private int children;
-    private Calendar birthday;
+    private final String name;
+    private final int children;
+    private final Calendar birthday;
 
     public User(String name, int children, Calendar birthday) {
         this.name = name;
@@ -35,7 +35,7 @@ public class User {
     }
 
     public static void main(String[] args) {
-        final Map<User, Object> usermap = new HashMap<>(3);
+        Map<User, Object> usermap = new HashMap<>(3);
         User userOne = new User("Egor", 1, new GregorianCalendar(2001, Calendar.MARCH, 27));
         User userTwo = new User("Egor", 1, new GregorianCalendar(2001, Calendar.MARCH, 27));
 
