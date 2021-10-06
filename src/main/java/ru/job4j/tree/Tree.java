@@ -11,7 +11,7 @@ public interface Tree<E> {
 
     Optional<Node<E>> findBy(E value);
 
-    public boolean isBinary();
+     boolean isBinary();
 
     class Node<E> {
           final  E value;
