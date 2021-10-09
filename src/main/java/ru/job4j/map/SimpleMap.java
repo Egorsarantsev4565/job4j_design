@@ -66,7 +66,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         int h = key.hashCode();
         int hash = hash(h);
         int index = indexFor(hash);
-        if (table[index] != null || table[index].equals(key)) {
+        if (table[index] != null && table[index].equals(key)) {
             table[index] = null;
             return true;
         } else {
