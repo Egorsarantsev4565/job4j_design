@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EvenNumberFile {
+public class LogFilter {
     public static List<String> filter(String file) {
        List<String> lines = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
