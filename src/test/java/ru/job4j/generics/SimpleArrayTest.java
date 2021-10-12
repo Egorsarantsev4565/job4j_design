@@ -7,7 +7,7 @@ import static org.junit.Assert.assertThat;
 public class SimpleArrayTest {
     @Test
     public void whensSet() {
-        SimpleArray simpleArray = new SimpleArray(4);
+        SimpleArray<Integer> simpleArray = new SimpleArray<Integer>(4);
         simpleArray.add(1);
         simpleArray.add(2);
         simpleArray.add(3);
@@ -18,7 +18,7 @@ public class SimpleArrayTest {
 
     @Test
     public void whensRemove() {
-        SimpleArray simpleArray = new SimpleArray(4);
+        SimpleArray<Integer> simpleArray = new SimpleArray<>(4);
         simpleArray.add(1);
         simpleArray.add(2);
         simpleArray.add(3);
@@ -29,7 +29,7 @@ public class SimpleArrayTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenException() {
-        SimpleArray simpleArray = new SimpleArray(4);
+        SimpleArray<Integer> simpleArray = new SimpleArray<Integer>(4);
         simpleArray.add(1);
         simpleArray.add(2);
         simpleArray.add(3);

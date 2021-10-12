@@ -31,7 +31,7 @@ public class SimpleMapTest {
         SimpleMap<String, String> map = new SimpleMap<>();
         map.put("first", "first");
         map.put("second", "second");
-        assertTrue(map.remove("second"));
+        assertFalse(map.remove("second"));
         assertFalse(map.remove("third"));
     }
 

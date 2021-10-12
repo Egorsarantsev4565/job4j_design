@@ -26,7 +26,6 @@ public class SimpleArray<T> implements Iterable<T> {
         System.arraycopy(array, ind + 1, array, ind, size - ind - 1);
         array[size - 1] = null;
         size--;
-
     }
 
     public T get(int index) {
