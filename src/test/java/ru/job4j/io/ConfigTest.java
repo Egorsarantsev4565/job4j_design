@@ -9,7 +9,7 @@ public class ConfigTest {
     @Test
     public void whenPairWithoutComment() {
         Config config = new Config(
-                "C:/Users/Egor/IdeaProjects/job4j_design/ app.properties.txt");
+                "C:/Users/Egor/IdeaProjects/job4j_design/app.properties");
         try {
             config.load();
         } catch (IOException e) {
@@ -24,7 +24,7 @@ public class ConfigTest {
     @Test
     public void whenPairWithComment() {
         Config config = new Config(
-                "C:/Users/Egor/IdeaProjects/job4j_design/nocomment.properties.txt");
+                "C:/Users/Egor/IdeaProjects/job4j_design/nocomment.properties");
 
         try {
             config.load();
@@ -37,7 +37,7 @@ public class ConfigTest {
     @Test
     public void whenPairWithourPair() {
         Config config = new Config(
-                "C:/Users/Egor/IdeaProjects/job4j_design/nopair.properties.txt");
+                "C:/Users/Egor/IdeaProjects/job4j_design/nopair.properties");
         try {
             config.load();
         } catch (IOException e) {
