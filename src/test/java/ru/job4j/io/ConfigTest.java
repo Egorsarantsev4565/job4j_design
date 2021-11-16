@@ -1,48 +1,51 @@
 package ru.job4j.io;
 
+import org.junit.Assert;
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import java.io.IOException;
 public class ConfigTest {
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void whenPairWithoutComment() {
         Config config = new Config(
-                "./app.properties");
+                "Data\\app.properties"); //в файле добавлял =
         try {
             config.load();
         } catch (IOException e) {
-            fail();
+            Assert.fail();
         }
         assertThat(
                 config.value("hibernate.connection.url"),
-                is("jdbc:postgresql://127.0.0.1:5432/trackstudio")
-        );
+                is("jdbc:postgresql://127.0.0.1:5432/trackstudio"));
+        throw new IllegalArgumentException();
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void whenPairWithComment() {
         Config config = new Config(
-                "./nocomment.properties");
-
+                "Data\\nocomment.properties");
         try {
             config.load();
         } catch (IOException e) {
-            fail();
+            Assert.fail();
         }
-        assertNull(config.value("hibernate.connection.password=password"));
+        assertThat(config.value("hibernate.connection.password"), is("password"));
+        //в файле нет значения
+        throw new IllegalArgumentException();
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void whenPairWithourPair() {
         Config config = new Config(
-                "./nopair.properties");
+                "Data\\nopair.properties");
         try {
             config.load();
         } catch (IOException e) {
-            fail();
+            Assert.fail();
         }
-        assertNull(config.value("5"));
+        assertThat(config.value(null), is("postgres")); //в файле нет ключа
+        throw new IllegalArgumentException();
     }
 }
