@@ -11,7 +11,6 @@ public class ConfigTest {
      * во втором тесет убрал значение
      * в третьем тесте убрал значение*/
 
-
     @Test(expected = IllegalArgumentException.class)
     public void whenPairWithoutComment() {
         Config config = new Config(
