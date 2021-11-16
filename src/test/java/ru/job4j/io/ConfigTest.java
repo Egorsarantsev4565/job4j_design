@@ -14,7 +14,7 @@ public class ConfigTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenPairWithoutComment() {
         Config config = new Config(
-                "Data\\app.properties");
+                "./Data/app.properties");
         try {
             config.load();
         } catch (IOException e) {
@@ -29,7 +29,7 @@ public class ConfigTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenPairWithComment() {
         Config config = new Config(
-                "Data\\nocomment.properties");
+                "./Data/nocomment.properties");
         try {
             config.load();
         } catch (IOException e) {
@@ -42,7 +42,7 @@ public class ConfigTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenPairWithourPair() {
         Config config = new Config(
-                "Data\\nopair.properties");
+                "./Data/nopair.properties");
         try {
             config.load();
         } catch (IOException e) {
