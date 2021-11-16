@@ -7,6 +7,11 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 public class ConfigTest {
 
+    /** в первом тесте добавил ==
+     * во втором тесет убрал значение
+     * в третьем тесте убрал значение*/
+
+
     @Test(expected = IllegalArgumentException.class)
     public void whenPairWithoutComment() {
         Config config = new Config(
