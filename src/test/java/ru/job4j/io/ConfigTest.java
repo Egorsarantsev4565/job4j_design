@@ -10,7 +10,7 @@ public class ConfigTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenPairWithoutComment() {
         Config config = new Config(
-                "Data\\app.properties"); //в файле добавлял =
+                "Data\\app.properties");
         try {
             config.load();
         } catch (IOException e) {
@@ -32,7 +32,6 @@ public class ConfigTest {
             Assert.fail();
         }
         assertThat(config.value("hibernate.connection.password"), is("password"));
-        //в файле нет значения
         throw new IllegalArgumentException();
     }
 
@@ -45,7 +44,7 @@ public class ConfigTest {
         } catch (IOException e) {
             Assert.fail();
         }
-        assertThat(config.value(null), is("postgres")); //в файле нет ключа
+        assertThat(config.value(null), is("postgres"));
         throw new IllegalArgumentException();
     }
 }
