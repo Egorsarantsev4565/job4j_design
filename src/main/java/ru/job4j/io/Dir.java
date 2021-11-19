@@ -1,10 +1,15 @@
 package ru.job4j.io;
 
 import java.io.File;
+import java.util.Objects;
 
 public class Dir {
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\Egor\\IdeaProjects");
+        if (args.length == 0) {
+            throw new IllegalArgumentException(
+                    "Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+        }
+        File file = new File(args[0]);
         if (!file.exists()) {
             throw new IllegalArgumentException(String.format(
                     "Not exist %s", file.getAbsoluteFile()));
@@ -16,6 +21,7 @@ public class Dir {
         System.out.println(String.format("size : %s", file.getTotalSpace()));
         for (File subfile : file.listFiles()) {
             System.out.println(subfile.getName() + " : " + subfile.length() / 1024 + "Kb");
+            }
         }
     }
-}
+
