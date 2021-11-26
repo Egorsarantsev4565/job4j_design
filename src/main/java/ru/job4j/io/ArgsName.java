@@ -15,12 +15,12 @@ public class ArgsName {
         if (args.length == 0) {
             throw new IllegalArgumentException();
         }
-        for (String a : args) {
-            if (a.indexOf("=") == a.length() - 1) {
+        for (String arg : args) {
+            String[] buffArg = arg.split("=");
+            if (buffArg.length < 2) {
                 throw new IllegalArgumentException();
             }
-            String[] split = a.replaceFirst("-", "").split("=");
-            values.put(split[0], split[1]);
+            values.put(buffArg[0].substring(1), buffArg[1]);
         }
     }
 
