@@ -16,9 +16,10 @@ public class UsageLog4j {
         int year = 2021;
         long day = 30;
         byte month = 11;
+        float temperature = 36.6F;
 
-        LOG.debug("User info name : {}, age : {}, sex : {}, alive : {}",
-                name, age, sex, alive);
+        LOG.debug("User info name : {}, age : {}, sex : {}, alive : {}, temperature : {}",
+                name, age, sex, alive, temperature);
         LOG.debug("Date info day : {}, month : {}, year : {}, days to New Year : {}",
                 day, month, year, daysToNewYear);
     }
