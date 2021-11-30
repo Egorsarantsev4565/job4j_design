@@ -44,7 +44,6 @@ public class EchoServer {
                 }
                 }
             } catch (IOException e) {
-            e.printStackTrace();
             LOG.error(e.getMessage());
         }
     }
