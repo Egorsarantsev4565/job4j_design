@@ -3,14 +3,29 @@ package ru.job4j.serialization.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+import java.io.StringWriter;
 import java.util.Arrays;
 
+@XmlRootElement(name = "ph")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class ChoosePhone {
+    @XmlAttribute
     private boolean available;
     private int price;
-    private final String collector;
-    private final String[] accessories;
-    private final Phone phone;
+    private  String collector;
+    private  Phone phone;
+    @XmlElementWrapper(name = "accessories")
+    @XmlElement(name = "accessory")
+    private  String[] accessories;
+
+    public ChoosePhone() {
+
+    }
 
     public ChoosePhone(boolean available, int price, String collector,
                        String[] accessories, Phone phone) {
@@ -32,15 +47,26 @@ public class ChoosePhone {
                 + '}';
     }
 
-    public static void main(String[] args) {
-        final ChoosePhone choosePhone = new ChoosePhone(true, 55000, "Mvideo",
+    public static void main(String[] args) throws JAXBException {
+         ChoosePhone choosePhone = new ChoosePhone(true, 55000, "Mvideo",
                 new String[]{"Charger", "Adapter", "Headphones"},
                 new Phone(false, 64, "Iphone 7+"));
-        final Gson gson = new GsonBuilder().create();
+        Gson gson = new GsonBuilder().create();
         String phJson = gson.toJson(choosePhone);
         System.out.println(phJson);
-        final ChoosePhone phMod = gson.fromJson(phJson, ChoosePhone.class);
+        ChoosePhone phMod = gson.fromJson(phJson, ChoosePhone.class);
         System.out.println(phMod);
-    }
 
+        JAXBContext context = JAXBContext.newInstance(ChoosePhone.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(choosePhone, writer);
+            String result = writer.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
+
+        }
+    }
 }
