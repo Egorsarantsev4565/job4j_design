@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<choosePhone available="true" price="55000" collector="Mvideo">
+    <phone broken="false" memory="64" model="Iphone 7+">
+    </phone>
+    <accesories>
+        <accesory>Charger</accesory>
+        <accesory>Adapter</accesory>
+        <accesory>Headphones</accesory>
+    </accesories>
+</choosePhone>
