@@ -10,7 +10,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDemo {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
+    public static void main(String[] args)
+            throws ClassNotFoundException, SQLException, IOException {
         Class.forName("org.postgresql.Driver");
         Settings settings = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
