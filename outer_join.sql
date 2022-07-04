@@ -34,15 +34,46 @@ insert into teens(name, gender) values('Кирилл', 'муж');
 insert into teens(name, gender) values('Артем', 'муж');
 insert into teens(name, gender) values('Андрей', 'муж');
 
-select * from departments d left join employees e on d.id=e.dep_id;
-select * from employees e right join departments d on d.id=e.dep_id;
-select * from departments d full join employees e on d.id=e.dep_id;
-select * from departments d cross join employees e;
-select * from employees e cross join departments d;
+select d.name as Департамент, e.name Сотрудник 
+from departments d 
+left join employees e 
+on d.id=e.dep_id;
 
-select * from departments d left join employees e on e.dep_id=d.id where e.id is null;
+select e.name Сотрудник, d.name as Департамент 
+from employees e 
+right join departments d 
+on d.id=e.dep_id;
 
-select * from employees e left join departments d on e.dep_id=d.id;
-select * from departments d right join employees e on e.dep_id=d.id;
+select d.name as Департамент, e.name Сотрудник 
+from departments d 
+full join employees e on 
+d.id=e.dep_id;
 
-select t1.name as t1, t2.name as t2 from teens t1 cross join teens t2 where t1.gender!=t2.gender;
+select d.name as Департамент, e.name Сотрудник 
+from departments d 
+cross join employees e;
+
+select e.name Сотрудник, d.name as Департамент  
+from employees e 
+cross join departments d;
+
+select d.name as Департамент, e.name Сотрудник 
+from departments d
+left join employees e 
+on e.dep_id=d.id 
+where e.id is null;
+
+select e.name Сотрудник, d.name as Департамент 
+from employees e 
+left join departments d 
+on e.dep_id=d.id;
+
+select d.name as Департамент, e.name Сотрудник 
+from departments d
+right join employees e 
+on e.dep_id=d.id;
+
+select t1.name as t1, t2.name as t2 
+from teens t1 
+cross join teens t2 
+where t1.gender!=t2.gender;
