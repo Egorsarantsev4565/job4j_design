@@ -69,7 +69,7 @@ left join car_transmissions as t on t.id=c.transmission_id;
 
 select c.name as Автомобиль, b.name as Кузов 
 from car_bodies as b 
-left join cars as c b.id=c.body_id 
+left join cars as c on b.id=c.body_id 
 where c.body_id is null;
 
 select c.name as Автомобиль, e.name as Двигатель 
