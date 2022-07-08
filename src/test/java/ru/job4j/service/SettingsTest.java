@@ -13,7 +13,7 @@ public class SettingsTest {
         Settings settings = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream io = loader.getResourceAsStream("app.properties")) {
-            settings.load(io);
+            settings.load();
         }
         String value = settings.getValue("url");
         assertThat(value, is("jdbc:postgresql://localhost:5432/idea_db"));

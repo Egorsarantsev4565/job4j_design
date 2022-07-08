@@ -7,9 +7,11 @@ import java.util.Properties;
 public class Settings {
     private final Properties prs = new Properties();
 
-    public void load(InputStream io) {
+    public void load() {
+        ClassLoader loader = Settings.class.getClassLoader();
         try {
-            this.prs.load(io);
+            InputStream io = loader.getResourceAsStream("app.properties");
+            prs.load(io);
         } catch (IOException e) {
             e.printStackTrace();
         }
