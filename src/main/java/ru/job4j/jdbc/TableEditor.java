@@ -18,7 +18,7 @@ public class TableEditor implements AutoCloseable {
         try {
             connection = getConnection();
         } catch (Exception e) {
-            System.out.println("Неверный логин или пароль");
+            e.printStackTrace();
         }
     }
 
