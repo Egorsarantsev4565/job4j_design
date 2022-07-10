@@ -1,13 +1,12 @@
 package ru.job4j.jdbc;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
 
 public class TableEditor implements AutoCloseable {
-    private static Connection connection;
+    private Connection connection;
     private Properties properties;
 
     public TableEditor(Properties properties) {
@@ -16,18 +15,23 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void initConnection() {
+        try {
+            connection = getConnection();
+        } catch (Exception e) {
+            System.out.println("Неверный логин или пароль");
+        }
+    }
+
+    private static Connection getConnection() throws Exception {
         Properties config = new Properties();
         try (InputStream in = TableEditor.class.getClassLoader()
                 .getResourceAsStream("app.properties")) {
             config.load(in);
             Class.forName(config.getProperty("driver"));
-            String url = config.getProperty("url");
-            String login = config.getProperty("login");
-            String password = config.getProperty("password");
-            connection = DriverManager.getConnection(url, login, password);
-
-        } catch (IOException | ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            return DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("login"),
+                    config.getProperty("password"));
         }
     }
 
@@ -103,15 +107,15 @@ public class TableEditor implements AutoCloseable {
         }
         try (TableEditor tableEditor = new TableEditor(config)) {
             tableEditor.createTable("tab");
-            System.out.println(TableEditor.getTableScheme(connection, "tab"));
+            System.out.println(TableEditor.getTableScheme(getConnection(), "tab"));
             tableEditor.addColumn("tab", "name",  "varchar(255)");
-            System.out.println(TableEditor.getTableScheme(connection, "tab"));
+            System.out.println(TableEditor.getTableScheme(getConnection(), "tab"));
             tableEditor.renameColumn("tab", "name", "Surname");
-            System.out.println(TableEditor.getTableScheme(connection, "tab"));
+            System.out.println(TableEditor.getTableScheme(getConnection(), "tab"));
             tableEditor.dropColumn("tab", "Surname");
-            System.out.println(TableEditor.getTableScheme(connection, "tab"));
+            System.out.println(TableEditor.getTableScheme(getConnection(), "tab"));
             tableEditor.dropTable("tab");
-            System.out.println(TableEditor.getTableScheme(connection, "tab"));
+            System.out.println(TableEditor.getTableScheme(getConnection(), "tab"));
 
         }
     }
