@@ -9,9 +9,8 @@ public class Settings {
 
     public void load() {
         ClassLoader loader = Settings.class.getClassLoader();
-        try {
-            InputStream io = loader.getResourceAsStream("app.properties");
-            prs.load(io);
+        try (InputStream io = loader.getResourceAsStream("app.properties")) {
+             prs.load(io);
         } catch (IOException e) {
             e.printStackTrace();
         }
