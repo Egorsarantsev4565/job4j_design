@@ -7,7 +7,7 @@ import java.util.StringJoiner;
 
 public class TableEditor implements AutoCloseable {
     private Connection connection;
-    private Properties properties;
+    private static Properties properties;
 
     public TableEditor(Properties properties) {
         this.properties = properties;
@@ -23,17 +23,12 @@ public class TableEditor implements AutoCloseable {
     }
 
     private static Connection getConnection() throws Exception {
-        Properties config = new Properties();
-        try (InputStream in = TableEditor.class.getClassLoader()
-                .getResourceAsStream("app.properties")) {
-            config.load(in);
-            Class.forName(config.getProperty("driver"));
+            Class.forName(properties.getProperty("driver"));
             return DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("login"),
-                    config.getProperty("password"));
+                    properties.getProperty("url"),
+                    properties.getProperty("login"),
+                    properties.getProperty("password"));
         }
-    }
 
     private void execute(String query) {
         try (Statement statement = connection.createStatement()) {
