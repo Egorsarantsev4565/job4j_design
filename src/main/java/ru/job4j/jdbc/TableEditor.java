@@ -23,12 +23,12 @@ public class TableEditor implements AutoCloseable {
     }
 
     private static Connection getConnection() throws Exception {
-        Properties properties = new Properties();
-            Class.forName(properties.getProperty("driver"));
+        Properties prs = new Properties();
+            Class.forName(prs.getProperty("driver"));
             return DriverManager.getConnection(
-                    properties.getProperty("url"),
-                    properties.getProperty("login"),
-                    properties.getProperty("password"));
+                    prs.getProperty("url"),
+                    prs.getProperty("login"),
+                    prs.getProperty("password"));
         }
 
     private void execute(String query) {
