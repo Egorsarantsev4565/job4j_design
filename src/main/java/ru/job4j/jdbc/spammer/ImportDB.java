@@ -24,6 +24,9 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(s -> {
                 String[] user = s.split(";");
+                if (user.length != 2 || user[0].isEmpty() && user[1].isEmpty()) {
+                    throw new IllegalArgumentException();
+                }
                 users.add(new User(user[0], user[1]));
             });
         }
@@ -31,30 +34,24 @@ public class ImportDB {
     }
 
     public void save(List<User> users) throws ClassNotFoundException, SQLException {
-        ClassLoader loader = ImportDB.class.getClassLoader();
-        try (InputStream io = loader.getResourceAsStream("app.properties")) {
-            cfg.load(io);
-            Class.forName(cfg.getProperty("jdbc.driver"));
-            try (Connection cnt = DriverManager.getConnection(
-                    cfg.getProperty("jdbc.url"),
-                    cfg.getProperty("jdbc.username"),
-                    cfg.getProperty("jdbc.password")
-            )) {
-                for (User user : users) {
-                    try (PreparedStatement ps = cnt
-                            .prepareStatement("insert into users(name, email) values(?, ?)")) {
-                        ps.setString(1, user.name);
-                        ps.setString(2, user.email);
-                        ps.execute();
-                    }
+        Class.forName(cfg.getProperty("jdbc.driver"));
+        try (Connection cnt = DriverManager.getConnection(
+                cfg.getProperty("jdbc.url"),
+                cfg.getProperty("jdbc.username"),
+                cfg.getProperty("jdbc.password")
+        )) {
+            for (User user : users) {
+                try (PreparedStatement ps = cnt
+                        .prepareStatement("insert into users(name, email) values(?, ?)")) {
+                    ps.setString(1, user.name);
+                    ps.setString(2, user.email);
+                    ps.execute();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-        private static class User {
+    private static class User {
         private String name;
         private String email;
 
@@ -64,14 +61,14 @@ public class ImportDB {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        Properties cfg = new Properties();
-        try (InputStream in = ImportDB.class
-                .getClassLoader()
-                .getResourceAsStream("app.properties")) {
-            cfg.load(in);
+        public static void main(String[] args) throws Exception {
+            Properties cfg = new Properties();
+            try (InputStream in = ImportDB.class
+                    .getClassLoader()
+                    .getResourceAsStream("app.properties")) {
+                cfg.load(in);
+            }
+            ImportDB db = new ImportDB(cfg, "./dump.txt");
+            db.save(db.load());
         }
-        ImportDB db = new ImportDB(cfg, "./dump.txt");
-        db.save(db.load());
     }
-}
